@@ -5,6 +5,7 @@ export interface Attraction extends Document {
   description: string;
   country: string;
   countryExhibition: string;
+  state?: string;
   address: string;
   continent: string;
   operation: {
@@ -26,6 +27,7 @@ const AttractionSchema: Schema = new Schema({
   description: { type: String, required: true },
   country: { type: String, required: true },
   countryExhibition: { type: String, required: true },
+  state: { type: String, required: false },
   address: { type: String, required: true },
   continent: { type: String, required: true },
   operation: [
