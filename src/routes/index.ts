@@ -29,7 +29,7 @@ export class StateRoutes {
     this.router = Router();
     this.stateController = new StateController();
     this.router.get("/", this.stateController.getAllStates);
-    this.router.get("/:id", this.stateController.getStateById);
+    this.router.get("/:name", this.stateController.getStateByName);
     this.router.post("/", AuthMiddleware.authenticate,  this.stateController.createState);
     this.router.put("/:id", AuthMiddleware.authenticate, this.stateController.updateState);
     this.router.delete("/:id", AuthMiddleware.authenticate, this.stateController.deleteState);

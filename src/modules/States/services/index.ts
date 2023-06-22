@@ -13,8 +13,8 @@ class StatesService {
     return states;
   }
 
-  public async getStateById(id: string): Promise<State | null> {
-    const state = await this.statesRepository.getStateById(id);
+  public async getStateByName(name: string): Promise<State | null> {
+    const state = await this.statesRepository.getStateByName(name);
     return state;
   }
 

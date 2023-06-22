@@ -6,10 +6,10 @@ export class StatesRepository {
     return states;
   }
 
-  public async getStateById(id: string): Promise<any> {
+  public async getStateByName(name: string): Promise<any> {
     try {
-      const state = await State.findById(id).exec();
-      if (!state) throw new Error(`State with id ${id} not found`);
+      const state = await State.findById(name).exec();
+      if (!state) throw new Error(`State with state ${name} not found`);
       return state;
     } catch (error) {
       console.error(error);
