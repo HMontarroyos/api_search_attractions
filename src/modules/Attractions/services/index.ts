@@ -24,9 +24,9 @@ class AttractionsService {
     return attractions;
   }
 
-  public async getAllAttractionsInState(state: string): Promise<any> {
+  public async getAllAttractionsInState(stateAcronym: string): Promise<any> {
     const attractions =
-      await this.attractionsRepository.getAllAttractionsInState(state);
+      await this.attractionsRepository.getAllAttractionsInState(stateAcronym);
     return attractions;
   }
 

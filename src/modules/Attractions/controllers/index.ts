@@ -65,11 +65,11 @@ export class AttractionController {
     req: Request,
     res: Response
   ): Promise<void> {
-    const state: string = req.params.state;
+    const stateAcronym: string = req.params.stateAcronym;
 
     try {
       const attractions: Attraction[] =
-        await attractionsService.getAllAttractionsInState(state);
+        await attractionsService.getAllAttractionsInState(stateAcronym);
 
       if (attractions.length === 0) {
         res.status(404).json({ error: "Attraction in State not found" });
@@ -79,7 +79,7 @@ export class AttractionController {
       res.status(200).json(attractions);
     } catch (error) {
       console.error(
-        `Error while fetching attraction with country in state ${state}`,
+        `Error while fetching attraction with country in state ${stateAcronym}`,
         error
       );
       res.status(500).json({ error: "Internal server error" });

@@ -27,9 +27,9 @@ export class AttractionsRepository {
     }
   }
 
-  public async getAllAttractionsInState(state: string): Promise<any> {
+  public async getAllAttractionsInState(stateAcronym: string): Promise<any> {
     try {
-      const attractions = await Attraction.find({ state: state }).exec();
+      const attractions = await Attraction.find({ stateAcronym: stateAcronym }).exec();
       return attractions;
     } catch (error) {
       console.error(error);
