@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { AttractionRoutes } from "./routes";
+import { AttractionRoutes, StateRoutes } from "./routes";
 
 export class App {
   public app: express.Application;
@@ -20,7 +20,10 @@ export class App {
 
   private routes() {
     const attractionRoutes = new AttractionRoutes();
+    const stateRoutes = new StateRoutes();
 
     this.app.use("/attractions", attractionRoutes.router);
+
+    this.app.use("/states", stateRoutes.router);
   }
 }

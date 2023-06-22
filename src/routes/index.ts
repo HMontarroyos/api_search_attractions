@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { AttractionController } from "../modules/Attractions/controllers";
-import AuthMiddleware from "../modules/Attractions/Middleware/AuthMiddleware";
+import { StateController } from "../modules/States/controllers";
+
+import AuthMiddleware from "../middleware/AuthMiddleware";
 export class AttractionRoutes {
   public attractionController: AttractionController;
   public router: Router;
@@ -19,5 +21,18 @@ export class AttractionRoutes {
   }
 }
 
+export class StateRoutes {
+  public stateController: StateController;
+  public router: Router;
 
+  constructor() {
+    this.router = Router();
+    this.stateController = new StateController();
+    this.router.get("/", this.stateController.getAllStates);
+    this.router.get("/:id", this.stateController.getStateById);
+    this.router.post("/", AuthMiddleware.authenticate,  this.stateController.createState);
+    this.router.put("/:id", AuthMiddleware.authenticate, this.stateController.updateState);
+    this.router.delete("/:id", AuthMiddleware.authenticate, this.stateController.deleteState);
+  }
+}
 
