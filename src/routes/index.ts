@@ -13,6 +13,7 @@ export class AttractionRoutes {
     this.router.get("/", this.attractionController.getAllAttractions);
     this.router.get("/:id", this.attractionController.getAttractionById);
     this.router.get("/all/:country", this.attractionController.getAllAttractionsInCountry);
+    this.router.get("/all/:state", this.attractionController.getAllAttractionsInState);
     this.router.post("/", AuthMiddleware.authenticate,  this.attractionController.createAttraction);
     this.router.post("/all", AuthMiddleware.authenticate, this.attractionController.createMultipleAttractions);
     this.router.put("/:id", AuthMiddleware.authenticate, this.attractionController.updateAttraction);
@@ -30,7 +31,6 @@ export class StateRoutes {
     this.stateController = new StateController();
     this.router.get("/", this.stateController.getAllStates);
     this.router.get("/:name", this.stateController.getStateByName);
-    this.router.get("/all/:state", this.stateController.getAllStates);
     this.router.post("/", AuthMiddleware.authenticate,  this.stateController.createState);
     this.router.put("/:id", AuthMiddleware.authenticate, this.stateController.updateState);
     this.router.delete("/:id", AuthMiddleware.authenticate, this.stateController.deleteState);
