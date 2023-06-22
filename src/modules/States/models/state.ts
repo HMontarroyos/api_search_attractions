@@ -2,6 +2,7 @@ import { Document, Schema, model } from "mongoose";
 
 export interface State extends Document {
   name: string;
+  nameExhibition: string;
   country: string;
   countryExhibition: string;
   region: string;
@@ -15,6 +16,7 @@ export interface State extends Document {
 
 const StateSchema: Schema = new Schema({
   name: { type: String, required: true },
+  nameExhibition: {type: String, required: true},
   country: { type: String, required: true },
   countryExhibition: { type: String, required: true },
   region: { type: String, required: true },
