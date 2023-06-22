@@ -24,6 +24,14 @@ class AttractionsService {
     return attractions;
   }
 
+  public async getAllAttractionsInState(state: string): Promise<any> {
+    const attractions =
+      await this.attractionsRepository.getAllAttractionsInState(state);
+    return attractions;
+  }
+
+  
+
   public async createAttraction(attraction: Attraction): Promise<Attraction> {
     const newAttraction = await this.attractionsRepository.createAttraction(
       attraction

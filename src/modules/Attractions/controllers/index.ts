@@ -61,6 +61,31 @@ export class AttractionController {
     }
   }
 
+  public async getAllAttractionsInState(
+    req: Request,
+    res: Response
+  ): Promise<void> {
+    const state: string = req.params.state;
+
+    try {
+      const attractions: Attraction[] =
+        await attractionsService.getAllAttractionsInState(state);
+
+      if (attractions.length === 0) {
+        res.status(404).json({ error: "Attraction in State not found" });
+        return;
+      }
+
+      res.status(200).json(attractions);
+    } catch (error) {
+      console.error(
+        `Error while fetching attraction with country in state ${state}`,
+        error
+      );
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+
   public async createAttraction(req: Request, res: Response): Promise<void> {
     try {
       const newAttraction: Attraction = req.body;

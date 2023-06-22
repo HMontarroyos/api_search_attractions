@@ -27,6 +27,16 @@ export class AttractionsRepository {
     }
   }
 
+  public async getAllAttractionsInState(state: string): Promise<any> {
+    try {
+      const attractions = await Attraction.find({ state: state }).exec();
+      return attractions;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
   public async createAttraction(attraction: any): Promise<any> {
     const newAttraction = new Attraction(attraction);
     const savedAttraction = await newAttraction.save();
