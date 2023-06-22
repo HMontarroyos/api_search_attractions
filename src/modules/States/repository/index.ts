@@ -8,7 +8,7 @@ export class StatesRepository {
 
   public async getStateByName(name: string): Promise<any> {
     try {
-      const state = await State.findById(name).exec();
+      const state = await State.findOne({ name: name }).exec();
       if (!state) throw new Error(`State with state ${name} not found`);
       return state;
     } catch (error) {
