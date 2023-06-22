@@ -13,11 +13,11 @@ export class StateController {
     }
   }
 
-  public async getStateByName(req: Request, res: Response): Promise<void> {
-    const stateName: string = req.params.name;
+  public async getStateByAcronym(req: Request, res: Response): Promise<void> {
+    const stateAcronym: string = req.params.acronym;
 
     try {
-      const state: State | null = await statesService.getStateByName(stateName);
+      const state: State | null = await statesService.getStateByAcronym(stateAcronym);
 
       if (!state) {
         res.status(404).json({ error: "State not found" });
@@ -26,7 +26,7 @@ export class StateController {
 
       res.status(200).json(state);
     } catch (error) {
-      console.error(`Error while fetching state with  ${stateName}`, error);
+      console.error(`Error while fetching state with  ${stateAcronym}`, error);
       res.status(500).json({ error: "Internal server error" });
     }
   }

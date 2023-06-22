@@ -6,10 +6,10 @@ export class StatesRepository {
     return states;
   }
 
-  public async getStateByName(name: string): Promise<any> {
+  public async getStateByAcronym(acronym: string): Promise<any> {
     try {
-      const state = await State.findOne({ name: name }).exec();
-      if (!state) throw new Error(`State with state ${name} not found`);
+      const state = await State.findOne({ acronym: acronym }).exec();
+      if (!state) throw new Error(`State with state in acronym ${acronym} not found`);
       return state;
     } catch (error) {
       console.error(error);
