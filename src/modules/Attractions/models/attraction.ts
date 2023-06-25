@@ -11,7 +11,8 @@ export interface Attraction extends Document {
   continent: string;
   operation: {
     day: string;
-    hour: string;
+    hourOpening: string;
+    hourClosing: string;
   }[];
   entry: string;
   images: {
@@ -35,7 +36,8 @@ const AttractionSchema: Schema = new Schema({
   operation: [
     {
       day: { type: String, required: true },
-      hour: { type: String, required: true },
+      hourOpening: { type: String, required: true },
+      hourClosing: { type: String, required: true },
     },
   ],
   entry: { type: String, required: true },
