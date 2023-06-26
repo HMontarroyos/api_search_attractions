@@ -10,6 +10,7 @@ export interface State extends Document {
     image: string;
     alt: string;
   };
+  mape?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -24,6 +25,7 @@ const StateSchema: Schema = new Schema({
     image: { type: String, required: true },
     alt: { type: String, required: true },
   },
+  mape: { type: String, required: false },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

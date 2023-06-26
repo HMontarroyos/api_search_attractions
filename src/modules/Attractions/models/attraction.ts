@@ -19,7 +19,6 @@ export interface Attraction extends Document {
     image: string;
     alt: string;
   };
-  mape?: string;
   rating?: number;
   createdAt?: Date;
   updatedAt?: Date;
@@ -47,7 +46,6 @@ const AttractionSchema: Schema = new Schema({
     alt: { type: String, required: true },
   },
   rating: { type: Number, required: false },
-  mape: { type: String, required: false },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
