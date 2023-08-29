@@ -9,7 +9,7 @@ export class AttractionController {
         await attractionsService.getAllAttractions();
       res.status(200).json(attractions);
     } catch (error) {
-      console.error("Error while fetching attractions", error);
+      console.error("Error while fetching attractions ", error);
       res.status(500).send("Internal server error");
     }
   }
