@@ -9,11 +9,6 @@ export interface Attraction extends Document {
   stateAcronym?: string;
   address: string;
   continent: string;
-  operation: {
-    day: string;
-    hourOpening: string;
-    hourClosing?: string;
-  }[];
   entry: string;
   images: {
     image: string;
@@ -33,13 +28,6 @@ const AttractionSchema: Schema = new Schema({
   stateAcronym: {type: String, required: false},
   address: { type: String, required: true },
   continent: { type: String, required: true },
-  operation: [
-    {
-      day: { type: String, required: true },
-      hourOpening: { type: String, required: true },
-      hourClosing: { type: String, required: false },
-    },
-  ],
   entry: { type: String, required: true },
   images: {
     image: { type: String, required: true },
