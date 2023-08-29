@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Attraction } from "../models/attraction";
+import { Attraction, AttractionSchema } from "../models/attraction";
 import { attractionsService } from "../services/index";
 
 export class AttractionController {
@@ -89,6 +89,14 @@ export class AttractionController {
   public async createAttraction(req: Request, res: Response): Promise<void> {
     try {
       const newAttraction: Attraction = req.body;
+      const invalidKeys = Object.keys(newAttraction).filter(
+        (key) => !AttractionSchema.obj.hasOwnProperty(key)
+      );
+
+      if (invalidKeys.length > 0) {
+        res.status(400).send(`Invalid keys found: ${invalidKeys.join(", ")}`);
+        return;
+      }
       if (
         !newAttraction.name ||
         !newAttraction.description ||
@@ -120,6 +128,26 @@ export class AttractionController {
   ): Promise<void> {
     try {
       const newAttractions: Attraction[] = req.body;
+      const invalidAttractions = newAttractions.filter((attraction) => {
+        const invalidKeys = Object.keys(attraction).filter(
+          (key) => !AttractionSchema.obj.hasOwnProperty(key)
+        );
+        return invalidKeys.length > 0;
+      });
+
+      if (invalidAttractions.length > 0) {
+        const invalidAttractionNames = invalidAttractions.map(
+          (attraction) => attraction.name
+        );
+        res
+          .status(400)
+          .send(
+            `Invalid keys found in attractions: ${invalidAttractionNames.join(
+              ", "
+            )}`
+          );
+        return;
+      }
       const missingFields = newAttractions.some(
         (attraction) =>
           !attraction.name ||
