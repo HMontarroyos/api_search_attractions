@@ -89,6 +89,22 @@ export class AttractionController {
   public async createAttraction(req: Request, res: Response): Promise<void> {
     try {
       const newAttraction: Attraction = req.body;
+      if (
+        !newAttraction.name ||
+        !newAttraction.description ||
+        !newAttraction.country ||
+        !newAttraction.countryExhibition ||
+        !newAttraction.state ||
+        !newAttraction.stateAcronym ||
+        !newAttraction.address ||
+        !newAttraction.continent ||
+        !newAttraction.entry ||
+        !newAttraction.images.image ||
+        !newAttraction.images.alt
+      ) {
+        res.status(400).send("Missing required fields");
+        return;
+      }
       const createdAttraction: Attraction =
         await attractionsService.createAttraction(newAttraction);
       res.status(201).json(createdAttraction);
@@ -104,6 +120,24 @@ export class AttractionController {
   ): Promise<void> {
     try {
       const newAttractions: Attraction[] = req.body;
+      const missingFields = newAttractions.some(
+        (attraction) =>
+          !attraction.name ||
+          !attraction.description ||
+          !attraction.country ||
+          !attraction.countryExhibition ||
+          !attraction.state ||
+          !attraction.stateAcronym ||
+          !attraction.address ||
+          !attraction.continent ||
+          !attraction.entry ||
+          !attraction.images.image ||
+          !attraction.images.alt
+      );
+      if (missingFields) {
+        res.status(400).send("Missing required fields");
+        return;
+      }
       const createdAttractions: Attraction[] =
         await attractionsService.createMultipleAttractions(newAttractions);
       res.status(201).json(createdAttractions);
